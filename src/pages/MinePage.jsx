@@ -4,29 +4,30 @@ const supportEmail = 'monsterbaxy@gmail.com';
 
 export default function MinePage({ openInfo, openOrderSearch, openDeliveryProof }) {
   const services = [
-    { title: 'Order Search', desc: 'Use order number + pickup code to find course materials', icon: '⌕', onClick: openOrderSearch },
-    { title: 'Delivery Proof', desc: 'View order proof and delivery record', icon: '▣', onClick: openDeliveryProof },
-    { title: 'Purchase Notice', desc: 'Course purchase and delivery instructions', icon: 'i', onClick: () => openInfo('purchase') },
-    { title: 'Refund Rules', desc: 'Digital course refund review rules', icon: '↺', onClick: () => openInfo('refund') },
-    { title: 'Merchant Info', desc: 'Merchant entity and service scope', icon: '◎', onClick: () => openInfo('merchant') },
-    { title: 'Privacy Policy', desc: 'Order and delivery data use', icon: '◇', onClick: () => openInfo('privacy') },
-    { title: 'Contact Support', desc: supportEmail, icon: '@', onClick: () => openInfo('contact') },
+    { title: '订单查询 / Order Search', desc: '使用订单号 + 取货码查询课程资料', icon: '⌕', onClick: openOrderSearch },
+    { title: '交付凭证 / Delivery Proof', desc: '查看订单凭证和交付记录', icon: '▣', onClick: openDeliveryProof },
+    { title: '购买须知 / Purchase Notice', desc: '课程购买与数字交付说明', icon: 'i', onClick: () => openInfo('purchase') },
+    { title: '退款规则 / Refund Rules', desc: '数字课程退款核查规则', icon: '↺', onClick: () => openInfo('refund') },
+    { title: '商户信息 / Merchant Info', desc: '商户主体与服务范围', icon: '◇', onClick: () => openInfo('merchant') },
+    { title: '隐私政策 / Privacy Policy', desc: '订单与交付数据使用说明', icon: '◌', onClick: () => openInfo('privacy') },
+    { title: '联系客服 / Contact Support', desc: supportEmail, icon: '@', onClick: () => openInfo('contact') },
   ];
 
   return (
     <>
-      <TopBar title="Mine" />
+      <TopBar title="我的 / Mine" />
       <main className="mx-auto min-h-screen max-w-md bg-slate-50 px-4 pb-28 pt-4">
         <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
           <div className="text-sm text-slate-400">LinguaPass</div>
-          <h1 className="mt-2 text-2xl font-black text-slate-950">My Services</h1>
+          <h1 className="mt-2 text-2xl font-black text-slate-950">我的服务 / My Services</h1>
           <p className="mt-2 text-sm leading-6 text-slate-500">
+            支持免注册购买、订单凭证领取、订单号和取货码查询、数字交付记录与售后核验。
             Registration-free purchase with order proof, pickup code lookup, digital delivery records, and after-sales verification.
           </p>
         </section>
 
         <section className="mt-4 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
-          <h2 className="font-black text-slate-950">My Services</h2>
+          <h2 className="font-black text-slate-950">我的服务 / My Services</h2>
           <div className="mt-3 space-y-3">
             {services.map((item) => (
               <button key={item.title} onClick={item.onClick} className="flex w-full items-center gap-3 rounded-2xl bg-slate-50 p-3 text-left">
@@ -42,9 +43,9 @@ export default function MinePage({ openInfo, openOrderSearch, openDeliveryProof 
         </section>
 
         <section className="mt-4 rounded-3xl border border-emerald-100 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800">
-          <div className="font-black text-emerald-900">Support</div>
-          <p className="mt-2">Support Email: {supportEmail}</p>
-          <p className="mt-2">Please provide your order number and pickup code for order lookup, re-delivery, or refund review.</p>
+          <div className="font-black text-emerald-900">客服支持 / Support</div>
+          <p className="mt-2">客服邮箱 / Support Email: {supportEmail}</p>
+          <p className="mt-2">订单查询、资料补发或退款核查时，请提供订单号和取货码。Please provide your order number and pickup code for order lookup, re-delivery, or refund review.</p>
         </section>
       </main>
     </>

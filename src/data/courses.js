@@ -9,7 +9,7 @@ export const courses = [
     originalPrice: 399,
     cover: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?q=80&w=1200&auto=format&fit=crop',
     tag: '旅行沟通',
-    desc: '面向泰国旅行和基础交流场景，提供原创/授权数字课程、PDF 讲义和跟读音频，适合零基础用户快速建立常用表达。',
+    desc: '面向泰国旅行和基础交流场景，提供原创或授权数字课程、PDF 讲义和跟读音频，适合零基础用户建立常用表达。',
     outline: ['泰语发音入门课', '旅行沟通常用句', '点餐问路表达表', '跟读音频资料'],
   },
   {
@@ -93,14 +93,14 @@ export const courses = [
   {
     id: 'minor-language-annual-pass',
     title: '多语种年度学习通行证',
-    subtitle: '小语种学习资料库 + 多语言课程 + 全年更新 + 专属访问权限',
+    subtitle: '小语种学习资料库 + 多语种课程 + 全年更新 + 专属访问权限',
     category: '年度会员',
     language: '年度会员',
     price: 3999,
     originalPrice: 6999,
     cover: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop',
     tag: '年度会员',
-    desc: '适合长期学习多种小众语言的用户，付款后获得多语种课程访问权限，可领取全年更新的原创/授权数字课程与学习资料。',
+    desc: '适合长期学习多种小众语言的用户，付款后获得多语种课程访问权限，可领取全年更新的原创或授权数字课程与学习资料。',
     outline: ['多语种课程访问权限', '全年数字资料更新', '旅行沟通与文化入门专题', '专属学习账号'],
   },
 ];

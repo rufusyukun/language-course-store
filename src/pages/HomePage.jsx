@@ -11,7 +11,10 @@ export default function HomePage({ openCourse }) {
         <section className="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-rose-500 p-5 text-white shadow-lg">
           <div className="text-sm text-white/70">小语种学习 · 非通用语种课程 · 订单凭证领取</div>
           <h1 className="mt-4 text-3xl font-black leading-tight">小语种在线课程<br />支付后订单内领取</h1>
-          <p className="mt-3 text-sm leading-6 text-white/75">免注册购买。支付完成后，订单页自动显示课程访问权限、学习账号、课程链接、取货码和交付证明，便于售后核验和交易留痕。</p>
+          <p className="mt-3 text-sm leading-6 text-white/75">
+            LinguaPass 是小语种在线课程与数字学习资料平台。用户付款成功后，系统会自动生成订单资料、学习账号、学习密码、取货码和课程领取入口。
+            LinguaPass provides online language courses and digital learning materials with automatic digital delivery after payment.
+          </p>
           <button onClick={() => openCourse(courses[0])} className="mt-5 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950">查看入门课程</button>
         </section>
 
@@ -24,7 +27,7 @@ export default function HomePage({ openCourse }) {
         </div>
         <section className="mt-5 rounded-3xl border border-emerald-100 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800">
           <div className="font-black text-emerald-900">合规商品说明</div>
-          <p className="mt-2">本站仅销售原创/授权语言学习课程，定位为在线语言课程与数字学习资料。</p>
+          <p className="mt-2">本站仅销售原创或授权语言学习课程，定位为在线语言课程与数字学习资料。</p>
           <p className="mt-2">不销售礼品卡、充值卡、游戏点卡、虚拟币、金融产品或侵权资料。</p>
           <p className="mt-2">不提供代考、代写、包过承诺、伪造证书、签证/移民承诺或任何规避平台规则的服务。</p>
         </section>

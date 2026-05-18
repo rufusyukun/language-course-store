@@ -2,7 +2,7 @@ const tabs = [
   { key: 'home', label: '首页', icon: '⌂' },
   { key: 'category', label: '分类', icon: '▦' },
   { key: 'orders', label: '订单', icon: '▣' },
-  { key: 'mine', label: '我的', icon: '●' },
+  { key: 'mine', label: '我的', icon: '◇' },
 ];
 
 export default function BottomTabs({ page, go }) {

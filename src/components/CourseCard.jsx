@@ -12,7 +12,7 @@ export default function CourseCard({ course, onOpen }) {
         <div className="mt-1 truncate text-sm text-slate-500">{course.subtitle}</div>
         <div className="mt-3 flex items-end justify-between">
           <div className="text-xl font-black text-rose-500">{formatPrice(course.price)}</div>
-          <div className="text-xs text-slate-400">自动发货</div>
+          <div className="text-xs text-slate-400">自动交付</div>
         </div>
       </div>
     </button>

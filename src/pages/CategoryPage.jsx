@@ -9,7 +9,7 @@ export default function CategoryPage({ openCourse }) {
 
   return (
     <>
-      <TopBar title="分类" />
+      <TopBar title="课程分类 / Categories" />
       <main className="mx-auto flex min-h-screen max-w-md bg-slate-50 pb-20">
         <aside className="w-24 border-r bg-white pt-4">
           {categories.map((cat) => (
