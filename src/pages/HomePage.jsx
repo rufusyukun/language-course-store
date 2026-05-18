@@ -1,4 +1,5 @@
 import CourseCard from '../components/CourseCard';
+import Footer from '../components/Footer';
 import TopBar from '../components/TopBar';
 import { courses } from '../data/courses';
 
@@ -27,6 +28,7 @@ export default function HomePage({ openCourse }) {
           <p className="mt-2">不销售礼品卡、充值卡、游戏点卡、虚拟币、金融产品或侵权资料。</p>
           <p className="mt-2">不提供代考、代写、包过承诺、伪造证书、签证/移民承诺或任何规避平台规则的服务。</p>
         </section>
+        <Footer />
       </main>
     </>
   );
