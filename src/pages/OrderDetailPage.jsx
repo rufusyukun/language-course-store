@@ -1,9 +1,17 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import Button from '../components/Button';
 import TopBar from '../components/TopBar';
 import { formatPrice } from '../data/courses';
 
 const supportEmail = 'monsterbaxy@gmail.com';
+const legacyCourseHost = ['course', 'example', 'com'].join('.');
+
+function courseAccessUrlFor(order) {
+  const fallback = `/course-access?orderNo=${encodeURIComponent(order.orderNo)}`;
+  if (!order.downloadUrl || String(order.downloadUrl).includes(legacyCourseHost)) return fallback;
+  if (!String(order.downloadUrl).startsWith('/course-access')) return fallback;
+  return order.downloadUrl;
+}
 
 export default function OrderDetailPage({ order, back }) {
   const [copied, setCopied] = useState('');
@@ -22,6 +30,7 @@ export default function OrderDetailPage({ order, back }) {
   const recoveryEmail = order.recoveryEmail || 'Not provided';
   const learningUsername = order.learningUsername || order.username || '';
   const learningPassword = order.learningPassword || order.password || '';
+  const courseAccessUrl = courseAccessUrlFor(order);
 
   return (
     <>
@@ -33,7 +42,7 @@ export default function OrderDetailPage({ order, back }) {
             <div className="min-w-0 flex-1">
               <div className="font-black text-slate-950">{order.course.title}</div>
               <div className="mt-1 text-sm text-slate-500">{order.paidAt || order.createdAt}</div>
-              <div className="mt-2 text-sm font-bold text-emerald-600">Paid · Digitally Delivered</div>
+              <div className="mt-2 text-sm font-bold text-emerald-600">Paid 路 Digitally Delivered</div>
             </div>
           </div>
         </section>
@@ -77,17 +86,19 @@ export default function OrderDetailPage({ order, back }) {
         </section>
 
         <section className="mt-4 rounded-3xl bg-white p-4 shadow-sm">
-          <h2 className="mb-3 font-black">Course Link</h2>
+          <h2 className="mb-3 font-black">Course Access Center / 课程领取中心</h2>
           <div className="rounded-2xl bg-slate-50 p-3">
-            <div className="text-xs text-slate-400">Course Access / Download Link</div>
-            <div className="mt-1 break-all font-mono text-sm text-slate-900">{order.downloadUrl}</div>
+            <div className="text-xs text-slate-400">Course Access Center</div>
+            <a href={courseAccessUrl} className="mt-1 block break-all font-mono text-sm font-bold text-rose-500">
+              课程领取中心
+            </a>
           </div>
           <div className="mt-3 flex items-center justify-between rounded-2xl bg-slate-50 p-3">
             <div>
               <div className="text-xs text-slate-400">Extract Code</div>
               <div className="mt-1 font-mono font-black text-rose-500">{order.extractCode}</div>
             </div>
-            <Button variant="outline" onClick={() => copy(`${order.downloadUrl} Extract Code: ${order.extractCode}`, 'Course Link')} className="h-10 rounded-full">Copy All</Button>
+            <Button variant="outline" onClick={() => copy(`${courseAccessUrl} Extract Code: ${order.extractCode}`, 'Course Access Center')} className="h-10 rounded-full">Copy All</Button>
           </div>
         </section>
 

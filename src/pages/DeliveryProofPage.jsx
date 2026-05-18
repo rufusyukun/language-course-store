@@ -1,8 +1,16 @@
-import Button from '../components/Button';
+﻿import Button from '../components/Button';
 import TopBar from '../components/TopBar';
 import { formatPrice } from '../data/courses';
 
 const supportEmail = 'monsterbaxy@gmail.com';
+const legacyCourseHost = ['course', 'example', 'com'].join('.');
+
+function courseAccessUrlFor(order) {
+  const fallback = `/course-access?orderNo=${encodeURIComponent(order.orderNo)}`;
+  if (!order.downloadUrl || String(order.downloadUrl).includes(legacyCourseHost)) return fallback;
+  if (!String(order.downloadUrl).startsWith('/course-access')) return fallback;
+  return order.downloadUrl;
+}
 
 export default function DeliveryProofPage({ order, back }) {
   if (!order) {
@@ -22,6 +30,7 @@ export default function DeliveryProofPage({ order, back }) {
   }
 
   const recoveryEmail = order.recoveryEmail || 'Not provided';
+  const courseAccessUrl = courseAccessUrlFor(order);
   const rows = [
     ['Proof Status', 'Generated'],
     ['Order No.', order.orderNo],
@@ -59,14 +68,14 @@ export default function DeliveryProofPage({ order, back }) {
         </section>
 
         <section className="mt-4 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
-          <h2 className="font-black text-slate-950">Course Access</h2>
+          <h2 className="font-black text-slate-950">Course Access Center / 课程领取中心</h2>
           <div className="mt-3 rounded-2xl bg-slate-50 p-3">
             <div className="text-xs text-slate-400">Learning Account</div>
             <div className="mt-1 font-mono text-sm font-bold text-slate-900">{order.learningUsername || order.username}</div>
           </div>
           <div className="mt-3 rounded-2xl bg-slate-50 p-3">
-            <div className="text-xs text-slate-400">Course Link</div>
-            <div className="mt-1 break-all font-mono text-sm text-slate-900">{order.downloadUrl}</div>
+            <div className="text-xs text-slate-400">Course Access Center</div>
+            <a href={courseAccessUrl} className="mt-1 block break-all font-mono text-sm font-bold text-rose-500">课程领取中心</a>
           </div>
           <div className="mt-3 rounded-2xl bg-slate-50 p-3">
             <div className="text-xs text-slate-400">Extract Code</div>

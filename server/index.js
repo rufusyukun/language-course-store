@@ -17,6 +17,7 @@ const mockWebhookSecret = process.env.MOCK_PAYMENT_SECRET || process.env.MOCK_WE
 const adminPassword = process.env.ADMIN_PASSWORD || '';
 const rootDir = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const distDir = join(rootDir, 'dist');
+const legacyCourseHost = ['course', 'example', 'com'].join('.');
 
 const courseById = new Map(courses.map((course) => [course.id, course]));
 
@@ -115,19 +116,37 @@ function createPaymentId(orderNo) {
   return `MOCKPAY-${orderNo}`;
 }
 
+function createCourseAccessUrl(orderNo) {
+  return `/course-access?orderNo=${encodeURIComponent(orderNo)}`;
+}
+
+function normalizeCourseAccessUrl(value, orderNo) {
+  if (!value || String(value).includes(legacyCourseHost)) return createCourseAccessUrl(orderNo);
+  return value;
+}
+
 async function createDelivery(order) {
   const existing = await get('SELECT * FROM deliveries WHERE orderNo = :orderNo', { orderNo: order.orderNo });
-  if (existing) return existing;
+  const downloadUrl = createCourseAccessUrl(order.orderNo);
+  if (existing) {
+    if (existing.downloadUrl !== downloadUrl) {
+      await run(
+        `UPDATE deliveries SET downloadurl = :downloadUrl WHERE orderNo = :orderNo`,
+        { orderNo: order.orderNo, downloadUrl },
+      );
+      return get('SELECT * FROM deliveries WHERE orderNo = :orderNo', { orderNo: order.orderNo });
+    }
+    return existing;
+  }
 
   const deliveredAt = new Date().toISOString();
   const learningUsername = `LP${Math.floor(100000 + Math.random() * 900000)}`;
   const learningPassword = Math.random().toString(36).slice(2, 10);
-  const downloadUrl = `https://course.example.com/download/${order.orderNo}`;
   const extractCode = order.pickupCode.slice(0, 4);
 
   await run(
     `INSERT INTO deliveries (
-      orderNo, learningUsername, learningPassword, username, password, downloadUrl, extractCode, deliveredAt
+      orderNo, learningUsername, learningPassword, username, password, downloadurl, extractCode, deliveredAt
     ) VALUES (
       :orderNo, :learningUsername, :learningPassword, :username, :password, :downloadUrl, :extractCode, :deliveredAt
     ) ON CONFLICT (orderNo) DO NOTHING`,
@@ -186,7 +205,7 @@ async function hydrateOrder(row) {
     learningPassword: delivery?.learningPassword || delivery?.password || '',
     username: delivery?.learningUsername || delivery?.username || '',
     password: delivery?.learningPassword || delivery?.password || '',
-    downloadUrl: delivery?.downloadUrl || '',
+    downloadUrl: normalizeCourseAccessUrl(delivery?.downloadUrl, row.orderNo),
     extractCode: delivery?.extractCode || '',
     deliveredAt: delivery?.deliveredAt || '',
     refunds,

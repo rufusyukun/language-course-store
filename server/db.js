@@ -39,7 +39,7 @@ const sqliteSchema = `
     orderNo TEXT NOT NULL UNIQUE,
     learningUsername TEXT NOT NULL,
     learningPassword TEXT NOT NULL,
-    downloadUrl TEXT NOT NULL,
+    downloadurl TEXT NOT NULL,
     extractCode TEXT NOT NULL,
     deliveredAt TEXT NOT NULL,
     FOREIGN KEY(orderNo) REFERENCES orders(orderNo)
@@ -109,7 +109,7 @@ const postgresSchema = `
     learningPassword TEXT NOT NULL,
     username TEXT,
     password TEXT,
-    downloadUrl TEXT NOT NULL,
+    downloadurl TEXT NOT NULL,
     extractCode TEXT NOT NULL,
     deliveredAt TEXT NOT NULL
   );
@@ -216,6 +216,7 @@ function getSqliteDb() {
 
 function migrateSqliteCompatibility(db) {
   const deliveryColumns = db.prepare('PRAGMA table_info(deliveries)').all().map((column) => column.name);
+  const normalizedDeliveryColumns = deliveryColumns.map((column) => column.toLowerCase());
 
   if (!deliveryColumns.includes('learningUsername')) {
     db.exec('ALTER TABLE deliveries ADD COLUMN learningUsername TEXT');
@@ -233,6 +234,12 @@ function migrateSqliteCompatibility(db) {
 
   if (!deliveryColumns.includes('username')) db.exec('ALTER TABLE deliveries ADD COLUMN username TEXT');
   if (!deliveryColumns.includes('password')) db.exec('ALTER TABLE deliveries ADD COLUMN password TEXT');
+  if (!normalizedDeliveryColumns.includes('downloadurl')) {
+    db.exec('ALTER TABLE deliveries ADD COLUMN downloadurl TEXT');
+    if (deliveryColumns.includes('downloadUrl')) {
+      db.exec('UPDATE deliveries SET downloadurl = downloadUrl WHERE downloadurl IS NULL');
+    }
+  }
 
   const tables = db.prepare("SELECT name FROM sqlite_master WHERE type = 'table'").all().map((row) => row.name);
   if (tables.includes('support_records') && !tables.includes('support_tickets')) {

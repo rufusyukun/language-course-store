@@ -14,11 +14,15 @@ import OrderSearchPage from './pages/OrderSearchPage';
 import DeliveryProofPage from './pages/DeliveryProofPage';
 import AdminPage from './pages/AdminPage';
 import LegalPage from './pages/LegalPage';
+import CourseAccessPage from './pages/CourseAccessPage';
 import { legalPages } from './data/legalPages';
 
 export default function App() {
   if (window.location.pathname === '/admin') {
     return <AdminPage />;
+  }
+  if (window.location.pathname === '/course-access') {
+    return <div className="min-h-screen overflow-x-hidden bg-slate-200 font-sans text-slate-950"><div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-2xl"><CourseAccessPage /></div></div>;
   }
   if (legalPages[window.location.pathname]) {
     return <div className="min-h-screen overflow-x-hidden bg-slate-200 font-sans text-slate-950"><div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-2xl"><LegalPage path={window.location.pathname} /></div></div>;
