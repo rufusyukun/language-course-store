@@ -8,13 +8,14 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function CheckoutPage({ course, back, pay }) {
   const [recoveryEmail, setRecoveryEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!course) return null;
 
   const requiresEmail = course.price >= 1500;
   const trimmedEmail = recoveryEmail.trim();
 
-  const submit = () => {
+  const submit = async () => {
     if (requiresEmail && !trimmedEmail) {
       setEmailError('该课程需填写订单找回邮箱，用于订单找回、售后通知和交付异常处理。');
       return;
@@ -23,7 +24,15 @@ export default function CheckoutPage({ course, back, pay }) {
       setEmailError('请输入有效的订单找回邮箱。');
       return;
     }
-    pay(trimmedEmail);
+
+    try {
+      setIsSubmitting(true);
+      await pay(trimmedEmail);
+    } catch (error) {
+      setEmailError(error.message === 'RECOVERY_EMAIL_REQUIRED' ? '该课程需填写订单找回邮箱。' : '订单创建或支付处理失败，请稍后重试。');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,8 +78,8 @@ export default function CheckoutPage({ course, back, pay }) {
           <h2 className="font-black text-emerald-900">交易留痕说明</h2>
           <p className="mt-2">本订单会保留课程名称、订单号、支付金额、支付时间、交付状态、取货码、订单找回邮箱和售后处理记录，用于支付服务商核验、订单查询、退款核验和争议处理。</p>
         </section>
-        <div className="mt-4 rounded-3xl bg-amber-50 p-4 text-sm leading-6 text-amber-800">完成支付后，系统会自动生成订单交付凭证、课程访问权限、学习账号、下载链接和取货码。请在订单详情页截图保存交付证明。</div>
-        <div className="fixed bottom-0 left-1/2 z-30 w-full max-w-md -translate-x-1/2 border-t bg-white/95 px-4 pb-[calc(16px+env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur"><div className="flex items-center justify-between gap-3"><div className="min-w-0"><div className="text-xs font-medium text-slate-400">应付金额</div><div className="text-3xl font-black leading-none text-rose-500">{formatPrice(course.price)}</div></div><Button onClick={submit} className="h-12 w-36 shrink-0 rounded-full text-base">立即支付</Button></div></div>
+        <div className="mt-4 rounded-3xl bg-amber-50 p-4 text-sm leading-6 text-amber-800">点击“立即支付”会先由后端创建 pending 订单，再通过 mock payment 完成支付和数字课程交付。请在订单详情页截图保存交付证明。</div>
+        <div className="fixed bottom-0 left-1/2 z-30 w-full max-w-md -translate-x-1/2 border-t bg-white/95 px-4 pb-[calc(16px+env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur"><div className="flex items-center justify-between gap-3"><div className="min-w-0"><div className="text-xs font-medium text-slate-400">应付金额</div><div className="text-3xl font-black leading-none text-rose-500">{formatPrice(course.price)}</div></div><Button onClick={submit} className="h-12 w-36 shrink-0 rounded-full text-base">{isSubmitting ? '处理中' : '立即支付'}</Button></div></div>
       </main>
     </>
   );
