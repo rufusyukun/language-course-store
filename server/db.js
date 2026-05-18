@@ -289,6 +289,9 @@ async function migratePostgresCompatibility(pool) {
 
 export async function initDb() {
   if (initialized) return;
+  if (process.env.NODE_ENV === 'production' && !hasDatabaseUrl()) {
+    throw new Error('DATABASE_URL is required in production.');
+  }
   if (hasDatabaseUrl()) {
     const pool = await getPgPool();
     await pool.query(postgresSchema);

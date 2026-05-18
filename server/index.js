@@ -1,5 +1,8 @@
 import './loadEnv.js';
+import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
+import { extname, join, normalize, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { courses } from '../src/data/courses.js';
 import {
   createAntomSandboxPayment,
@@ -9,9 +12,11 @@ import {
 } from './antom.js';
 import { all, get, initDb, run } from './db.js';
 
-const port = Number(process.env.API_PORT || 3001);
+const port = Number(process.env.PORT || process.env.API_PORT || 3001);
 const mockWebhookSecret = process.env.MOCK_PAYMENT_SECRET || process.env.MOCK_WEBHOOK_SECRET || 'mock_secret_dev';
 const adminPassword = process.env.ADMIN_PASSWORD || '';
+const rootDir = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const distDir = join(rootDir, 'dist');
 
 const courseById = new Map(courses.map((course) => [course.id, course]));
 
@@ -23,6 +28,61 @@ function sendJson(res, status, payload) {
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   });
   res.end(JSON.stringify(payload));
+}
+
+const contentTypes = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.txt': 'text/plain; charset=utf-8',
+};
+
+function sendStatic(req, res, url) {
+  if (!['GET', 'HEAD'].includes(req.method)) {
+    res.writeHead(405, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ error: 'METHOD_NOT_ALLOWED' }));
+    return true;
+  }
+
+  if (!existsSync(distDir)) {
+    res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ error: 'FRONTEND_NOT_BUILT' }));
+    return true;
+  }
+
+  const pathname = decodeURIComponent(url.pathname);
+  const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^[/\\]+/, '');
+  const normalizedPath = normalize(relativePath).replace(/^(\.\.[/\\])+/, '');
+  const candidate = join(distDir, normalizedPath);
+  const safeCandidate = resolve(candidate);
+  const isFile = safeCandidate.startsWith(distDir) && existsSync(safeCandidate) && statSync(safeCandidate).isFile();
+  const assetPath = isFile
+    ? safeCandidate
+    : join(distDir, 'index.html');
+  const type = contentTypes[extname(assetPath)] || 'application/octet-stream';
+
+  res.writeHead(200, {
+    'Content-Type': type,
+    'Cache-Control': assetPath.endsWith('index.html') ? 'no-cache' : 'public, max-age=31536000, immutable',
+  });
+  if (req.method === 'HEAD') {
+    res.end();
+    return true;
+  }
+  const stream = createReadStream(assetPath);
+  stream.on('error', () => {
+    if (!res.headersSent) res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ error: 'STATIC_FILE_READ_FAILED' }));
+  });
+  stream.pipe(res);
+  return true;
 }
 
 async function readJson(req) {
@@ -553,7 +613,7 @@ const server = createServer(async (req, res) => {
     if (req.method === 'GET' && url.pathname.startsWith('/api/orders/')) return await handleGetOrder(req, res, url);
     if (req.method === 'GET' && url.pathname === '/api/health') return sendJson(res, 200, { ok: true });
 
-    return sendJson(res, 404, { error: 'NOT_FOUND' });
+    return sendStatic(req, res, url);
   } catch (error) {
     console.error(error);
     return sendJson(res, 500, { error: 'INTERNAL_ERROR' });
@@ -563,5 +623,5 @@ const server = createServer(async (req, res) => {
 await initDb();
 
 server.listen(port, () => {
-  console.log(`API server listening on http://127.0.0.1:${port}`);
+  console.log(`Server listening on http://127.0.0.1:${port}`);
 });
