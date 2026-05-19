@@ -40,14 +40,19 @@ export default function OrderSearchPage({ back, onOrderFound }) {
 
   return (
     <>
-      <TopBar title="订单查询 / Order Search" canBack onBack={back} />
+      <TopBar title="订单查询 / Order Lookup" canBack onBack={back} />
       <main className="mx-auto min-h-screen max-w-md bg-slate-50 px-4 pb-24 pt-4">
         <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
-          <h2 className="text-xl font-black text-slate-950">订单查询 / Order Search</h2>
+          <h2 className="text-xl font-black text-slate-950">订单查询 / Order Lookup</h2>
           <p className="mt-2 text-sm leading-6 text-slate-400">
-            使用订单凭证找回已购买课程与交付记录。未填写订单找回邮箱的订单，只能通过订单号 + 取货码查询。
-            Use order proof to find purchased courses and delivery records. If no recovery email was provided, use order number + pickup code.
+            订单查询必须通过订单号 + 取货码，或订单找回邮箱 + 订单号完成。不要只凭订单号返回订单详情。
+            Order lookup requires Order No. + Pickup Code, or recovery email + Order No. Order details are not returned by order number alone.
           </p>
+
+          <div className="mt-4 rounded-2xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+            免注册购买不代表匿名交易。平台会保留订单号、支付状态、交付记录、取货码和必要风控日志，用于售后核查、争议处理和支付合规审核。
+            Registration-free purchase does not mean anonymous trading. The platform keeps order number, payment status, delivery record, pickup code, and necessary risk-control logs for after-sales verification, dispute handling, and payment compliance review.
+          </div>
 
           <div className="mt-5 grid grid-cols-2 gap-2 rounded-2xl bg-slate-50 p-1">
             <button onClick={() => { setMethod('code'); setError(''); }} className={`h-10 rounded-xl text-sm font-bold ${method === 'code' ? 'bg-white text-rose-500 shadow-sm' : 'text-slate-400'}`}>订单号 + 取货码</button>

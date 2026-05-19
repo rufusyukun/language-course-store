@@ -4,7 +4,7 @@ const supportEmail = 'monsterbaxy@gmail.com';
 
 export default function MinePage({ openInfo, openOrderSearch, openDeliveryProof }) {
   const services = [
-    { title: '订单查询 / Order Search', desc: '使用订单号 + 取货码查询课程资料', icon: '⌕', onClick: openOrderSearch },
+    { title: '订单查询 / Order Lookup', desc: '订单号 + 取货码查询课程资料', icon: '⌕', onClick: openOrderSearch },
     { title: '交付凭证 / Delivery Proof', desc: '查看订单凭证和交付记录', icon: '▣', onClick: openDeliveryProof },
     { title: '购买须知 / Purchase Notice', desc: '课程购买与数字交付说明', icon: 'i', onClick: () => openInfo('purchase') },
     { title: '退款规则 / Refund Rules', desc: '数字课程退款核查规则', icon: '↺', onClick: () => openInfo('refund') },
@@ -40,6 +40,16 @@ export default function MinePage({ openInfo, openOrderSearch, openDeliveryProof 
               </button>
             ))}
           </div>
+        </section>
+
+        <section className="mt-4 rounded-3xl border border-amber-100 bg-amber-50 p-4 text-sm leading-6 text-amber-800">
+          <div className="font-black text-amber-900">订单查询说明 / Order Lookup Notice</div>
+          <p className="mt-2">
+            免注册购买不代表匿名交易。平台会保留订单号、支付状态、交付记录、取货码和必要风控日志，用于售后核查、争议处理和支付合规审核。
+          </p>
+          <p className="mt-2">
+            Registration-free purchase does not mean anonymous trading. The platform keeps order number, payment status, delivery record, pickup code, and necessary risk-control logs for after-sales verification, dispute handling, and payment compliance review.
+          </p>
         </section>
 
         <section className="mt-4 rounded-3xl border border-emerald-100 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800">

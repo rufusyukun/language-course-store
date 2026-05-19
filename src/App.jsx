@@ -15,6 +15,7 @@ import DeliveryProofPage from './pages/DeliveryProofPage';
 import AdminPage from './pages/AdminPage';
 import LegalPage from './pages/LegalPage';
 import CourseAccessPage from './pages/CourseAccessPage';
+import CourseMaterialsPage from './pages/CourseMaterialsPage';
 import { legalPages } from './data/legalPages';
 
 export default function App() {
@@ -23,6 +24,9 @@ export default function App() {
   }
   if (window.location.pathname === '/course-access') {
     return <div className="min-h-screen overflow-x-hidden bg-slate-200 font-sans text-slate-950"><div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-2xl"><CourseAccessPage /></div></div>;
+  }
+  if (window.location.pathname === '/course-materials') {
+    return <div className="min-h-screen overflow-x-hidden bg-slate-200 font-sans text-slate-950"><div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-2xl"><CourseMaterialsPage /></div></div>;
   }
   if (legalPages[window.location.pathname]) {
     return <div className="min-h-screen overflow-x-hidden bg-slate-200 font-sans text-slate-950"><div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-2xl"><LegalPage path={window.location.pathname} /></div></div>;

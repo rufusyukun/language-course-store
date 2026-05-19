@@ -2,6 +2,8 @@ import Button from '../components/Button';
 import TopBar from '../components/TopBar';
 import { formatPrice } from '../data/courses';
 
+const supportEmail = 'monsterbaxy@gmail.com';
+
 export default function DetailPage({ course, back, buyNow }) {
   if (!course) return null;
 
@@ -21,16 +23,37 @@ export default function DetailPage({ course, back, buyNow }) {
           <p className="mt-2 text-sm leading-6 text-slate-500">{course.desc}</p>
           <div className="mt-4 flex items-end gap-2"><div className="text-3xl font-black text-rose-500">{formatPrice(course.price)}</div><div className="pb-1 text-sm text-slate-400 line-through">{formatPrice(course.originalPrice)}</div></div>
         </section>
+
         <section className="border-t bg-slate-50 p-5">
-          <h2 className="font-black">课程包含 / Course Includes</h2>
-          <div className="mt-3 space-y-3">{course.outline.map((item) => <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100"><span className="text-rose-500">✓</span><span className="text-sm text-slate-700">{item}</span></div>)}</div>
-        </section>
-        <section className="p-5">
-          <h2 className="font-black">购买须知 / Purchase Notice</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-500">
-            支持免注册购买。支付成功后，系统会自动生成订单号、取货码、学习账号、课程领取入口和交付状态记录。请在订单详情页截图保存，售后处理需提供订单号和取货码。
+          <h2 className="font-black">课程名称 / Course Name</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600">{course.title}</p>
+          <h2 className="mt-4 font-black">课程简介 / Course Overview</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600">{course.desc}</p>
+          <h2 className="mt-4 font-black">适合人群 / Suitable For</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            适合希望学习小语种基础表达、旅行沟通、商务基础或文化入门的用户。Suitable for learners who need niche language basics, travel communication, business basics, or cultural introduction.
           </p>
         </section>
+
+        <section className="border-t bg-slate-50 p-5">
+          <h2 className="font-black">课程包含内容 / What’s Included</h2>
+          <div className="mt-3 space-y-3">{course.outline.map((item) => <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100"><span className="text-rose-500">✓</span><span className="text-sm text-slate-700">{item}</span></div>)}</div>
+        </section>
+
+        <section className="p-5">
+          <h2 className="font-black">交付方式 / Delivery Method</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            本课程为数字课程资料，付款成功后系统会自动生成订单资料、学习账号、学习密码、取货码和课程领取入口。
+            This is a digital learning product. After successful payment, the system will generate order details, learning account, password, pickup code, and course access information.
+          </p>
+          <h2 className="mt-4 font-black">退款规则入口 / Refund Policy</h2>
+          <a href="/refund-policy" className="mt-2 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
+            查看退款政策 / View Refund Policy
+          </a>
+          <h2 className="mt-4 font-black">客服邮箱 / Support Email</h2>
+          <p className="mt-2 break-all text-sm leading-6 text-slate-500">{supportEmail}</p>
+        </section>
+
         <section className="mx-5 mb-5 rounded-3xl border border-emerald-100 bg-emerald-50 p-4">
           <h2 className="font-black text-emerald-900">商户合规说明 / Compliance Notice</h2>
           <div className="mt-2 space-y-2 text-sm leading-6 text-emerald-800">

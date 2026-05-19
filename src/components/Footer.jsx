@@ -7,6 +7,9 @@ export default function Footer() {
       <p className="mt-2 text-xs leading-5 text-slate-500">
         小语种在线课程与数字学习资料平台，付款成功后数字交付。Niche language online courses and digital learning materials with digital delivery after payment.
       </p>
+      <div className="mt-3 text-xs leading-5 text-slate-500">
+        官网 / Website: {companyInfo.websiteUrl}
+      </div>
       <div className="mt-4 grid grid-cols-2 gap-2">
         {footerLinks.map((link) => (
           <a key={link.path} href={link.path} className="rounded-2xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600">

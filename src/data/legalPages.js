@@ -5,6 +5,7 @@ const companyStatus = 'Live Company';
 const incorporationDate = '04 Jun 2024';
 const registeredAddress = '7500A Beach Road #04-307, The Plaza, Singapore 199591';
 const supportEmail = 'monsterbaxy@gmail.com';
+const websiteUrl = 'https://www.linguapasscourse.com';
 
 export const companyInfo = {
   companyName,
@@ -14,13 +15,17 @@ export const companyInfo = {
   incorporationDate,
   registeredAddress,
   supportEmail,
+  websiteUrl,
 };
+
+const businessDescription =
+  'LinguaPass 是 SHINRA TECHNOLOGY PTE. LTD. 运营的数字内容与在线学习项目，提供小语种课程资料、在线学习材料、软件化访问页面及相关数字媒体服务。LinguaPass is a digital content and online learning project operated by SHINRA TECHNOLOGY PTE. LTD. It provides language learning materials, online study resources, software-based access pages, and related digital media services.';
 
 export const legalPages = {
   '/about': {
     title: '关于我们 / About',
     badge: 'LinguaPass',
-    summary: `LinguaPass 由 ${companyName} 运营，提供小语种在线课程与数字学习资料。LinguaPass is operated by ${companyName} and provides online language learning courses and digital learning materials.`,
+    summary: businessDescription,
     sections: [
       {
         title: '公司信息 / Company Information',
@@ -31,15 +36,16 @@ export const legalPages = {
           `公司状态 / Company Status: ${companyStatus}.`,
           `新加坡注册日期 / Incorporated in Singapore on ${incorporationDate}.`,
           `注册地址 / Registered Address: ${registeredAddress}.`,
-          '业务范围 / Business: 小语种在线课程与数字学习资料。Online language learning courses and digital learning materials.',
+          `官方网站 / Official Website: ${websiteUrl}.`,
         ],
       },
       {
         title: '数字学习业务 / Digital Learning Business',
         items: [
+          businessDescription,
           'LinguaPass 销售数字课程与学习资料，不提供实体商品或实体物流配送。LinguaPass sells digital learning content, not physical goods.',
           '付款成功后，系统会自动生成订单资料、学习账号、学习密码、取货码和课程领取入口。After successful payment, the system provides order details, learning account, password, pickup code, and course access information.',
-          '所有商品均为数字内容交付。Products are delivered digitally after payment.',
+          '课程领取中心和课程资料页面均为站内数字交付页面。The course access center and course materials page are in-site digital delivery pages.',
         ],
       },
       {
@@ -62,6 +68,7 @@ export const legalPages = {
           `公司 / Company: ${companyName}.`,
           `UEN: ${uen}.`,
           `注册地址 / Registered Address: ${registeredAddress}.`,
+          `官方网站 / Official Website: ${websiteUrl}.`,
           `客服邮箱 / Support Email: ${supportEmail}.`,
         ],
       },
@@ -84,7 +91,7 @@ export const legalPages = {
         title: '服务提供方 / Service Provider',
         items: [
           `本服务条款由 ${companyName}（UEN ${uen}）提供，该公司为新加坡注册的 ${companyType}。These Terms are provided by ${companyName}, UEN ${uen}, an ${companyType} registered in Singapore.`,
-          'LinguaPass 提供小语种在线课程与数字学习资料。LinguaPass provides online language learning courses and digital learning materials.',
+          businessDescription,
           '用户购买的是数字语言学习内容。Users purchase digital language learning content.',
         ],
       },
@@ -93,7 +100,7 @@ export const legalPages = {
         items: [
           '订单在付款成功后以数字方式交付。Orders are fulfilled digitally after payment.',
           '付款成功后，订单页面会显示学习账号、学习密码、取货码和课程领取入口。After successful payment, the order page will display learning account information, password, pickup code, and course access information.',
-          '用户应保存订单号和取货码。Users should save their order number and pickup code.',
+          '用户应保存订单号和取货码，并可通过订单号 + 取货码查询订单。Users should save their order number and pickup code, and may query orders with order number + pickup code.',
           '本服务不包含实体物流配送。The service does not include physical delivery.',
         ],
       },
@@ -141,28 +148,31 @@ export const legalPages = {
   '/refund-policy': {
     title: '退款政策 / Refund Policy',
     badge: '数字内容 / Digital Content',
-    summary: 'LinguaPass 销售数字课程与学习资料，退款审核以支付记录和交付记录为依据。LinguaPass sells digital courses and learning materials. Refund review is based on payment and delivery records.',
+    summary: '数字课程资料一经成功交付，原则上不支持无理由退款；如发生系统或交付异常，可联系客服申请核查。Digital course materials are generally not refundable for change-of-mind reasons after successful delivery; users may contact support for review if a system or delivery issue occurs.',
     sections: [
       {
-        title: '数字交付与退款规则 / Digital Delivery and Refund Rule',
+        title: '基本规则 / Basic Rule',
         items: [
-          '数字课程与学习资料通常在付款成功后立即或短时间内完成交付。Digital courses and learning materials are delivered immediately or shortly after successful payment.',
-          '数字内容、学习账号、取货码或课程领取入口成功交付后，原则上不支持无理由退款。Once digital content, learning account information, pickup code, or course access has been successfully delivered, refunds are generally not available for change-of-mind reasons.',
-          '成功交付是指订单页面已显示学习账号、学习密码、课程领取入口和取货码等信息。Successful delivery means the order page has displayed course access information such as learning account, password, course access information, and pickup code.',
+          '数字课程资料通常在付款成功后立即或短时间内完成交付。Digital courses and learning materials are delivered immediately or shortly after successful payment.',
+          '数字课程资料一经成功交付，原则上不支持无理由退款。Once digital course materials are successfully delivered, refunds are generally not available for change-of-mind reasons.',
+          '成功交付是指订单页面已显示学习账号、学习密码、取货码、课程领取入口或课程资料入口。Successful delivery means the order page has displayed learning account, password, pickup code, course access center, or course materials entry.',
         ],
       },
       {
-        title: '可申请核查的情况 / Refund Review Cases',
+        title: '可申请核查的情况 / Review Cases',
         items: [
-          '如发生重复扣款、系统错误、无法交付或交付内容与订单不一致，可联系客服核查。Refund review may be available if there is duplicate payment, failed delivery, incorrect delivery, or a technical issue caused by the system.',
-          '如系统错误导致重复扣款，用户可联系支持团队核验。If a system error causes duplicate charging, the user may contact support for verification.',
-          '如付款后系统无法交付课程资料，或交付内容与订单不一致，用户可申请审核。If the system cannot deliver course materials after payment, or delivered content does not match the paid order, the user may request review.',
+          '重复扣款。Duplicate payment.',
+          '系统错误。System error.',
+          '付款成功但未生成订单资料。Payment succeeded but order details were not generated.',
+          '付款成功但无法访问课程资料。Payment succeeded but course materials cannot be accessed.',
+          '交付内容与订单不一致。Delivered content does not match the order.',
+          '因平台技术原因导致无法正常领取资料。The user cannot claim materials due to a platform technical issue.',
         ],
       },
       {
         title: '处理方式 / Resolution',
         items: [
-          '审核通过后，可进行重新交付或退款处理。Approved cases may be resolved by refund or re-delivery.',
+          '审核通过后，平台可根据情况进行重新交付、补发资料或退款处理。After review approval, the platform may re-deliver, resend materials, or process a refund depending on the case.',
           `请用户发送订单号、取货码和问题说明至 ${supportEmail}。Users should contact ${supportEmail} with the order number, pickup code, and issue description.`,
           `商户 / Merchant: ${companyName}, UEN ${uen}.`,
         ],
@@ -172,29 +182,28 @@ export const legalPages = {
   '/delivery-policy': {
     title: '交付政策 / Delivery Policy',
     badge: '数字交付 / Digital Delivery',
-    summary: 'LinguaPass 商品为数字课程与数字学习资料，不提供实体物流配送。LinguaPass products are digital courses and digital learning materials. No physical shipping is provided.',
+    summary: '本网站销售数字课程与学习资料，不提供实体物流。LinguaPass sells digital courses and learning materials and does not provide physical shipping.',
     sections: [
       {
         title: '数字交付 / Digital Delivery',
         items: [
-          '本网站不提供实体物流配送。No physical shipping is provided.',
-          '交付为数字交付，通常在支付确认后立即完成。Delivery is digital and usually completed immediately after payment confirmation.',
-          '付款成功后，订单页面会显示学习账号、学习密码、取货码和课程领取入口。After successful payment, the order page will display learning account information, password, pickup code, and course access information.',
+          '本网站销售数字课程与学习资料，不提供实体物流。This website sells digital courses and learning materials and does not provide physical shipping.',
+          '用户付款成功后，订单详情页会自动显示学习账号、学习密码、取货码和课程领取入口。After successful payment, the order details page automatically displays the learning account, password, pickup code, and course access entry.',
+          '数字交付通常会在支付确认后立即完成。Digital delivery is usually completed immediately after payment confirmation.',
         ],
       },
       {
-        title: '订单资料 / Order Information',
+        title: '订单保存与查询 / Order Saving and Lookup',
         items: [
           '用户应截图或保存订单资料。Users should save or screenshot the order information.',
-          '用户应妥善保存订单号、取货码和学习账号信息。Users should keep the order number, pickup code, and learning account information secure.',
-          '系统会保存交付记录，用于订单查询、售后核验、退款审核和争议处理。The system stores delivery records for order lookup, after-sales verification, refund review, and dispute handling.',
+          '如关闭页面或更换设备，可通过订单号和取货码进行订单查询。If the page is closed or the device is changed, users can query the order with order number and pickup code.',
+          `如仍无法找回，可联系 ${supportEmail}，并提供订单号或取货码。If the user still cannot recover the order, contact ${supportEmail} with the order number or pickup code.`,
         ],
       },
       {
-        title: '订单页面遗失 / Lost Order Page',
+        title: '交付记录 / Delivery Records',
         items: [
-          '如遗失订单页面，用户可凭订单号或取货码联系客服协助找回。If the user loses the order page, they can contact support with the order number or pickup code.',
-          `客服邮箱 / Support Email: ${supportEmail}.`,
+          '系统会保存交付记录，用于订单查询、售后核验、退款审核和争议处理。The system stores delivery records for order lookup, after-sales verification, refund review, and dispute handling.',
           `商户 / Merchant: ${companyName}, UEN ${uen}.`,
         ],
       },

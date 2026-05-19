@@ -93,6 +93,9 @@ export default function OrderDetailPage({ order, back }) {
               课程领取中心
             </a>
           </div>
+          <a href={courseAccessUrl} className="mt-3 block rounded-2xl bg-gradient-to-r from-orange-400 to-rose-500 px-4 py-3 text-center text-sm font-black text-white shadow-lg shadow-rose-100">
+            进入课程领取中心 / Enter Course Access Center
+          </a>
           <div className="mt-3 flex items-center justify-between rounded-2xl bg-slate-50 p-3">
             <div>
               <div className="text-xs text-slate-400">取货码 / Pickup Code</div>
@@ -108,7 +111,10 @@ export default function OrderDetailPage({ order, back }) {
             本页面用于保存课程名称、订单号、支付金额、支付时间、交付状态、取货码、学习账号记录和客服邮箱。用户可凭订单号和取货码联系客服查询订单、补发资料、退款核查或处理支付争议。
           </p>
           <p className="mt-2">
-            This page keeps course name, order number, payment amount, payment time, delivery status, pickup code, learning account record, and support email for order lookup, re-delivery, refund review, and dispute handling.
+            请截图或保存本页面。用户可凭订单号和取货码查询订单、补发资料、申请退款核查或处理支付争议。
+          </p>
+          <p className="mt-2">
+            Please save or screenshot this page. You can use the order number and pickup code for order lookup, re-delivery, refund review, or dispute handling.
           </p>
           <p className="mt-2">客服邮箱 / Support Email: {supportEmail}</p>
         </section>
