@@ -119,6 +119,12 @@ export default function OrderDetailPage({ order, back }) {
           <p className="mt-2">客服邮箱 / Support Email: {supportEmail}</p>
         </section>
 
+        <section className="mt-4 rounded-3xl border border-amber-100 bg-amber-50 p-4 text-sm leading-6 text-amber-800">
+          <h2 className="font-black text-amber-900">订单查询 / Order Lookup</h2>
+          <p className="mt-2">如关闭页面或更换设备，可在“我的 / Mine”页面凭订单号 + 取货码找回课程资料。</p>
+          <p className="mt-2">If this page is closed or the device is changed, use Order No. + Pickup Code in the Mine page to recover course materials.</p>
+        </section>
+
         <div className="mt-4 rounded-3xl bg-rose-50 p-4 text-sm leading-6 text-rose-700">
           数字课程资料一经成功交付，原则上不支持无理由退款。如出现重复扣款、系统错误、无法交付或交付内容与订单不一致，请联系客服核查。审核通过后，可进行重新交付或退款处理。
         </div>

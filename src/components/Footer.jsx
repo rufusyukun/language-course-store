@@ -10,6 +10,11 @@ export default function Footer() {
       <div className="mt-3 text-xs leading-5 text-slate-500">
         官网 / Website: {companyInfo.websiteUrl}
       </div>
+      <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+        <div className="font-black text-amber-900">订单查询 / Order Lookup</div>
+        <p className="mt-1">用户可在“我的 / Mine”页面凭订单号 + 取货码找回课程资料。</p>
+        <p className="mt-1">Use Order No. + Pickup Code in the Mine page to recover course materials.</p>
+      </div>
       <div className="mt-4 grid grid-cols-2 gap-2">
         {footerLinks.map((link) => (
           <a key={link.path} href={link.path} className="rounded-2xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600">

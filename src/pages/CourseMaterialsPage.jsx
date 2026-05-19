@@ -55,8 +55,8 @@ export default function CourseMaterialsPage() {
           <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white/90">数字课程资料 / Digital Materials</span>
           <h1 className="mt-4 text-2xl font-black leading-tight">课程资料 / Course Materials</h1>
           <p className="mt-3 text-sm leading-6 text-white/75">
-            这里展示用户购买后可访问的数字课程资料。正式课程资料会根据订单中的课程类型提供。
-            This page shows digital course materials available after purchase. Final course materials are provided according to the purchased course.
+            以下为课程资料预览。完整资料会根据用户购买的课程与订单信息开放。
+            Course materials are provided according to the purchased course and order information.
           </p>
         </section>
 
@@ -99,7 +99,7 @@ export default function CourseMaterialsPage() {
           <div className="mt-3 rounded-2xl bg-slate-50 p-3">
             <div className="text-xs font-bold text-slate-400">站内讲义说明 / In-site Handout Notice</div>
             <p className="mt-1">{activeModule.handout}</p>
-            <p className="mt-2 text-xs text-slate-400">当前为站内模拟课程资料内容，用于展示数字课程交付流程。This in-site sample shows the digital course delivery flow.</p>
+            <p className="mt-2 text-xs text-slate-400">当前为课程资料预览内容，用于说明数字课程交付后的资料结构。Course materials are provided according to the purchased course and order information.</p>
           </div>
         </section>
 

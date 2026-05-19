@@ -50,6 +50,11 @@ export default function DetailPage({ course, back, buyNow }) {
           <a href="/refund-policy" className="mt-2 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
             查看退款政策 / View Refund Policy
           </a>
+          <h2 className="mt-4 font-black">售后方式 / Support</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            如需订单查询、资料补发或退款核查，请凭订单号和取货码联系客服。
+            For order lookup, re-delivery, or refund review, contact support with your order number and pickup code.
+          </p>
           <h2 className="mt-4 font-black">客服邮箱 / Support Email</h2>
           <p className="mt-2 break-all text-sm leading-6 text-slate-500">{supportEmail}</p>
         </section>

@@ -26,8 +26,9 @@ export default function SuccessPage({ order, viewOrder, goHome }) {
           </div>
         </div>
         <div className="mt-4 rounded-3xl bg-amber-50 p-4 text-left text-sm leading-6 text-amber-800">
-          订单资料页会保存课程名称、支付金额、支付时间、交付状态和客服信息，用于订单查询、售后补发、退款核查和争议处理。
-          The order detail page keeps course name, amount, payment time, delivery status, and support information for order lookup, re-delivery, refund review, and dispute handling.
+          <div className="font-black text-amber-900">订单查询 / Order Lookup</div>
+          <p className="mt-2">用户可凭订单号 + 取货码找回课程资料。建议先进入订单资料页截图保存完整订单信息。</p>
+          <p className="mt-2">Users can recover course materials with Order No. + Pickup Code. Please view order details first and save the full order information.</p>
         </div>
         <Button onClick={viewOrder} className="mt-8 w-full text-base">查看订单资料 / View Order Details</Button>
         <Button variant="outline" onClick={goHome} className="mt-3 w-full text-base">返回首页 / Back Home</Button>

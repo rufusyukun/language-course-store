@@ -37,7 +37,7 @@ export default function CourseAccessPage() {
               '用户付款成功后，可通过订单详情页查看学习账号、学习密码、取货码和课程资料入口。After successful payment, users can view the learning account, password, pickup code, and course materials entry from the order details page.',
               '请截图或保存订单资料。Please save or screenshot your order details after payment.',
               `如需补发或售后，可凭订单号和取货码联系 ${supportEmail}。For re-delivery or after-sales support, contact ${supportEmail} with your order number and pickup code.`,
-              '课程资料入口为站内页面，不涉及外部虚假下载链接。Course materials are provided through an in-site page without external placeholder download links.',
+              '课程资料入口为站内页面，不涉及外部虚假下载链接。Course materials are provided through an in-site page without external temporary download links.',
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-2xl bg-slate-50 p-3 text-sm leading-6 text-slate-600">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-rose-500" />
